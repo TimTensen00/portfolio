@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Klimaat en aarde — Tim Tensen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>:root { --accent: #fe6836; }</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Tim Tensen</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Werk</a></li>
+    <li><a href="over.html">Over</a></li>
+    <li><a href="mailto:tim@timtensen.nl">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="hoofdstuk-header">
+    <a class="terug" href="index.html">← Alle hoofdstukken</a>
+    <div class="accent-lijn"></div>
+    <h1>Klimaat en aarde</h1>
+  </div>
+
+<div class="case">
+  <div class="case-header">
+    <div class="case-opdrachtgever">NRC</div>
+    <h2 class="case-titel">Europa droogt uit</h2>
+  </div>
+  <p class="case-tekst">Voor dit artikel vertaalde ik klimaatdata naar een kaart van bodemvocht in Europa. Ik bracht in beeld hoe droog de grond is waar gewassen wortelen, en hoe die waarden zich verhouden tot wat normaal is. De visualisatie laat zien waar droogte uitzonderlijke niveaus bereikt, veroorzaakt door een combinatie van weinig neerslag en langdurige hitte.</p>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_2_1_droogte.png" alt="2 2 1 droogte"></div>
+    <p class="media-caption">tekst_droogte</p>
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-header">
+    <div class="case-opdrachtgever">NRC</div>
+    <h2 class="case-titel">IJsschots A23</h2>
+  </div>
+  <p class="case-tekst">Voor dit artikel vertaalde ik satellietdata naar visualisaties van de reis van ijsberg A23a. Ik bracht in kaart hoe de ijsberg zich over decennia verplaatste, van het moment van afbreken tot zijn tocht door de Zuidelijke Oceaan, en liet zien hoe stromingen en onderzeese structuren die route beïnvloeden.</p>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_2_2_ijsberg1.png" alt="2 2 2 ijsberg1"></div>
+    <p class="media-caption">tekst_ijsberg1</p>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame"><video src="images/2_2_2_ijsberg2.mp4" autoplay loop muted playsinline></video></div>
+    <p class="media-caption">tekst_ijsberg2</p>
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-header">
+    <div class="case-opdrachtgever">NRC</div>
+    <h2 class="case-titel">Noordpoolijs</h2>
+  </div>
+  <p class="case-tekst">Voor dit artikel visualiseerde ik de afname van zee-ijs in het Noordpoolgebied sinds 1979, en liet ik zien hoe zowel de omvang als de dikte van het ijs afnemen. De visualisaties maken zichtbaar hoe uitzonderlijk recente jaren zijn in historisch perspectief.</p>
+  <div class="media-blok">
+    <div class="media-frame"><video src="images/2_2_3_noordpool1.mp4" autoplay loop muted playsinline></video></div>
+    <p class="media-caption">tekst_noordpool1</p>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_2_3_noordpool2.png" alt="2 2 3 noordpool2"></div>
+    <p class="media-caption">noordpool2</p>
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-header">
+    <div class="case-opdrachtgever">NRC</div>
+    <h2 class="case-titel">Klimaat jaar in beeld</h2>
+  </div>
+  <p class="case-tekst">Voor dit artikel visualiseerde ik 2023 als een jaar vol extremen, met per maand een aantal opvallende gebeurtenissen, van natuurbranden en smeltend zee-ijs tot extreme stormen. Zo wordt zichtbaar hoe uitzonderlijk het jaar was en hoe verschillende klimaateffecten zich wereldwijd manifesteerden.</p>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_2_4_klimaatjaar1.png" alt="2 2 4 klimaatjaar1"></div>
+    <p class="media-caption">klimaat1</p>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame"><video src="images/2_2_4_klimaatjaar2.mp4" autoplay loop muted playsinline></video></div>
+    <p class="media-caption">klimaat2</p>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_2_4_klimaatjaar3.png" alt="2 2 4 klimaatjaar3"></div>
+    <p class="media-caption">klimaat3</p>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>© 2025 Tim Tensen</p>
+  <a href="mailto:tim@timtensen.nl">tim@timtensen.nl</a>
+</footer>
+
+<script>
+  function initGallery(gallery, withText) {
+    const items = gallery.querySelectorAll('.gallery-item');
+    const prevBtn = gallery.querySelector('.prev');
+    const nextBtn = gallery.querySelector('.next');
+    const captionEl = gallery.querySelector('.gallery-caption');
+    const counterEl = gallery.querySelector('.gallery-counter');
+    const progress = gallery.querySelector('.gallery-progress');
+    let current = 0;
+    const total = items.length;
+
+    function stopAllVideos() {
+      items.forEach(item => {
+        const v = item.querySelector('video');
+        if (v) { v.pause(); v.currentTime = 0; }
+      });
+      if (progress) progress.style.width = '0%';
+    }
+
+    function animateTextIn(item) {
+      if (!withText) return;
+      const txt = item.querySelector('.slide-text');
+      if (!txt) return;
+      txt.classList.remove('exit-up', 'visible');
+      requestAnimationFrame(() => requestAnimationFrame(() => txt.classList.add('visible')));
+    }
+
+    function animateTextOut(item, callback) {
+      if (!withText) { callback(); return; }
+      const txt = item.querySelector('.slide-text');
+      if (!txt) { callback(); return; }
+      txt.classList.remove('visible');
+      txt.classList.add('exit-up');
+      setTimeout(callback, 320);
+    }
+
+    function startVideo(item) {
+      const video = item.querySelector('video');
+      if (!video) { if (progress) progress.style.width = '0%'; return; }
+      video.loop = item.dataset.loop === 'true';
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      video.addEventListener('timeupdate', function onTime() {
+        if (!video.duration) return;
+        if (progress) progress.style.width = (video.currentTime / video.duration * 100) + '%';
+        if (video.ended) {
+          video.removeEventListener('timeupdate', onTime);
+          if (progress) progress.style.width = '100%';
+        }
+      });
+    }
+
+    function goTo(index) {
+      const next = (index + total) % total;
+      if (next === current) return;
+      const previous = current;
+      animateTextOut(items[previous], () => {
+        stopAllVideos();
+        items[previous].classList.remove('active');
+        current = next;
+        items[current].classList.add('active');
+        if (captionEl) captionEl.textContent = items[current].dataset.caption || '';
+        if (counterEl) counterEl.textContent = (current + 1) + ' / ' + total;
+        prevBtn.classList.toggle('hidden', current === 0);
+        nextBtn.classList.toggle('hidden', current === total - 1);
+        animateTextIn(items[current]);
+        startVideo(items[current]);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    // Init
+    items[0].classList.add('active');
+    prevBtn.classList.add('hidden');
+    nextBtn.classList.toggle('hidden', total <= 1);
+    if (captionEl) captionEl.textContent = items[0].dataset.caption || '';
+    if (counterEl) counterEl.textContent = '1 / ' + total;
+    animateTextIn(items[0]);
+    startVideo(items[0]);
+  }
+
+  document.querySelectorAll('.gallery-plain').forEach(g => initGallery(g, false));
+  document.querySelectorAll('.gallery-tekstvak').forEach(g => initGallery(g, true));
+</script>
+
+</body>
+</html>

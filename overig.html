@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overige projecten — Tim Tensen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>:root { --accent: #4bd7da; }</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Tim Tensen</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Werk</a></li>
+    <li><a href="over.html">Over</a></li>
+    <li><a href="mailto:tim@timtensen.nl">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="hoofdstuk-header">
+    <a class="terug" href="index.html">← Alle hoofdstukken</a>
+    <div class="accent-lijn"></div>
+    <h1>Overige projecten</h1>
+  </div>
+
+<div class="case">
+  <div class="case-header">
+    <div class="case-opdrachtgever">NRC</div>
+    <h2 class="case-titel">Defensiekaart</h2>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_5_1_defensie.png" alt="2 5 1 defensie"></div>
+    <p class="media-caption">defensie1</p>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame">
+    <div class="gallery gallery-tekstvak" id="gallery-1">
+      <div class="gallery-stage">
+      <div class="gallery-item active" data-caption="tekstvak1" data-loop="true">
+        <div class="video-badge">animatie</div>
+        <video src="images/2_5_1_defensie10.mp4" muted playsinline preload="auto"></video>
+        <div class="slide-text">tekstvak1</div>
+      </div>
+      <div class="gallery-item" data-caption="tekstvak2" data-loop="false">
+        <div class="video-badge">animatie</div>
+        <video src="images/2_5_1_defensie11.mp4" muted playsinline preload="auto"></video>
+        <div class="slide-text">tekstvak2</div>
+      </div>
+      <div class="gallery-item" data-caption="tekstvak3" data-loop="false">
+        <div class="video-badge">animatie</div>
+        <video src="images/2_5_1_defensie22.mp4" muted playsinline preload="auto"></video>
+        <div class="slide-text">tekstvak3</div>
+      </div>
+      <div class="gallery-item" data-caption="tekstvak4" data-loop="false">
+        <div class="video-badge">animatie</div>
+        <video src="images/2_5_1_defensie33.mp4" muted playsinline preload="auto"></video>
+        <div class="slide-text">tekstvak4</div>
+      </div>
+      <div class="gallery-item" data-caption="2 5 1 defensie44" data-loop="false">
+        <div class="video-badge">animatie</div>
+        <video src="images/2_5_1_defensie44.mp4" muted playsinline preload="auto"></video>
+      </div>
+      <div class="gallery-item" data-caption="2 5 1 defensie55" data-loop="false">
+        <div class="video-badge">animatie</div>
+        <video src="images/2_5_1_defensie55.mp4" muted playsinline preload="auto"></video>
+      </div>
+        <div class="gallery-progress"></div>
+        <div class="gallery-nav">
+          <button class="gallery-btn prev hidden" aria-label="Vorige">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11,3 5,9 11,15"/></svg>
+          </button>
+          <button class="gallery-btn next" aria-label="Volgende">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,3 13,9 7,15"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="gallery-footer">
+        <span class="gallery-caption">tekstvak1</span>
+        <span class="gallery-counter">1 / 6</span>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-header">
+    <div class="case-opdrachtgever">NRC</div>
+    <h2 class="case-titel">Kernreactors</h2>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_5_2_kernreactors.png" alt="2 5 2 kernreactors"></div>
+    <p class="media-caption">kerreactors1</p>
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-header">
+    <div class="case-opdrachtgever">RD</div>
+    <h2 class="case-titel">Petities kerk</h2>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_5_4_kerk.png" alt="2 5 4 kerk"></div>
+    <p class="media-caption">kerk</p>
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-header">
+    <div class="case-opdrachtgever">NRC</div>
+    <h2 class="case-titel">GVB / Kabinet</h2>
+  </div>
+  <div class="media-blok">
+    <div class="media-frame"><img src="images/2_5_3_gvb.png" alt="2 5 3 gvb"></div>
+    <p class="media-caption">gvg</p>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>© 2025 Tim Tensen</p>
+  <a href="mailto:tim@timtensen.nl">tim@timtensen.nl</a>
+</footer>
+
+<script>
+  function initGallery(gallery, withText) {
+    const items = gallery.querySelectorAll('.gallery-item');
+    const prevBtn = gallery.querySelector('.prev');
+    const nextBtn = gallery.querySelector('.next');
+    const captionEl = gallery.querySelector('.gallery-caption');
+    const counterEl = gallery.querySelector('.gallery-counter');
+    const progress = gallery.querySelector('.gallery-progress');
+    let current = 0;
+    const total = items.length;
+
+    function stopAllVideos() {
+      items.forEach(item => {
+        const v = item.querySelector('video');
+        if (v) { v.pause(); v.currentTime = 0; }
+      });
+      if (progress) progress.style.width = '0%';
+    }
+
+    function animateTextIn(item) {
+      if (!withText) return;
+      const txt = item.querySelector('.slide-text');
+      if (!txt) return;
+      txt.classList.remove('exit-up', 'visible');
+      requestAnimationFrame(() => requestAnimationFrame(() => txt.classList.add('visible')));
+    }
+
+    function animateTextOut(item, callback) {
+      if (!withText) { callback(); return; }
+      const txt = item.querySelector('.slide-text');
+      if (!txt) { callback(); return; }
+      txt.classList.remove('visible');
+      txt.classList.add('exit-up');
+      setTimeout(callback, 320);
+    }
+
+    function startVideo(item) {
+      const video = item.querySelector('video');
+      if (!video) { if (progress) progress.style.width = '0%'; return; }
+      video.loop = item.dataset.loop === 'true';
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      video.addEventListener('timeupdate', function onTime() {
+        if (!video.duration) return;
+        if (progress) progress.style.width = (video.currentTime / video.duration * 100) + '%';
+        if (video.ended) {
+          video.removeEventListener('timeupdate', onTime);
+          if (progress) progress.style.width = '100%';
+        }
+      });
+    }
+
+    function goTo(index) {
+      const next = (index + total) % total;
+      if (next === current) return;
+      const previous = current;
+      animateTextOut(items[previous], () => {
+        stopAllVideos();
+        items[previous].classList.remove('active');
+        current = next;
+        items[current].classList.add('active');
+        if (captionEl) captionEl.textContent = items[current].dataset.caption || '';
+        if (counterEl) counterEl.textContent = (current + 1) + ' / ' + total;
+        prevBtn.classList.toggle('hidden', current === 0);
+        nextBtn.classList.toggle('hidden', current === total - 1);
+        animateTextIn(items[current]);
+        startVideo(items[current]);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    // Init
+    items[0].classList.add('active');
+    prevBtn.classList.add('hidden');
+    nextBtn.classList.toggle('hidden', total <= 1);
+    if (captionEl) captionEl.textContent = items[0].dataset.caption || '';
+    if (counterEl) counterEl.textContent = '1 / ' + total;
+    animateTextIn(items[0]);
+    startVideo(items[0]);
+  }
+
+  document.querySelectorAll('.gallery-plain').forEach(g => initGallery(g, false));
+  document.querySelectorAll('.gallery-tekstvak').forEach(g => initGallery(g, true));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+/* ============================================
+   shared.css — Tim Tensen portfolio
+   Pas hier aan voor alle pagina's tegelijk
+   ============================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #111110;
+  --white: #F7F5F0;
+  --gray: #888884;
+  --border: #DDDBD4;
+  --max: 680px;
+  --accent: #888884; /* wordt overschreven per pagina */
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.nav-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.1rem;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  color: var(--gray);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.nav-links a:hover { color: var(--black); }
+
+/* ── MAIN ── */
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── HOOFDSTUK HEADER ── */
+.hoofdstuk-header {
+  padding: 3rem 0 2.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+
+.terug {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--gray);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+
+.terug:hover { color: var(--black); }
+
+.accent-lijn {
+  width: 2rem;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.hoofdstuk-header h1 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.hoofdstuk-header p {
+  font-size: 0.95rem;
+  color: var(--gray);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+/* ── CASE ── */
+.case {
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.case:last-child { border-bottom: none; }
+
+.case-header { margin-bottom: 1.5rem; }
+
+.case-opdrachtgever {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.case-titel {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
+}
+
+.case-tekst {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── MEDIA BLOKKEN ── */
+.media-blok {
+  margin-top: 1.25rem;
+}
+
+.media-blok + .media-blok { margin-top: 0.75rem; }
+
+/* Kleurvlak met padding en dropshadow — stilstaand */
+.media-frame {
+  background: var(--accent);
+  padding: 0.5rem;
+  display: block;
+}
+
+.media-frame img,
+.media-frame video {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 6px 6px 14px rgba(0,0,0,0.32);
+}
+
+.media-caption {
+  font-size: 0.78rem;
+  color: var(--gray);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+/* ── GALLERY ── */
+.gallery {
+  position: relative;
+  width: 100%;
+  background: #1a1a18;
+  overflow: hidden;
+  box-shadow: 6px 6px 14px rgba(0,0,0,0.32);
+}
+
+.gallery-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.gallery-item {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.gallery-item.active {
+  display: flex;
+  pointer-events: auto;
+}
+
+.gallery-item img,
+.gallery-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.video-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.55);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.gallery-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.1s linear;
+  z-index: 10;
+}
+
+.gallery-nav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.75rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gallery-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  border: 0.5px solid rgba(0,0,0,0.2);
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.gallery-btn:hover { background: rgba(0,0,0,0.25); }
+.gallery-btn.hidden { opacity: 0; pointer-events: none; }
+
+.gallery-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.5rem;
+  gap: 1rem;
+}
+
+.gallery-caption {
+  font-size: 0.78rem;
+  color: var(--gray);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.gallery-counter {
+  font-size: 0.72rem;
+  color: var(--gray);
+  white-space: nowrap;
+}
+
+/* ── GALLERY MET TEKSTVAK ── */
+.slide-text {
+  position: absolute;
+  bottom: 2rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  background: rgba(10,10,8,0.72);
+  color: rgba(255,255,255,0.92);
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  border-left: 2px solid var(--accent);
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 0.38s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.slide-text.visible { transform: translateY(0); opacity: 1; }
+.slide-text.exit-up { transform: translateY(-150%); opacity: 0; }
+
+/* ── FOOTER ── */
+footer {
+  max-width: var(--max);
+  margin: 2rem auto 0;
+  padding: 3rem 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+
+footer p { font-size: 0.8rem; color: var(--gray); }
+footer a { font-size: 0.8rem; color: var(--gray); text-decoration: none; }
+footer a:hover { color: var(--black); }
+
+@media (max-width: 480px) {
+  nav { padding: 2rem 1.25rem 0; }
+  main { padding: 0 1.25rem; }
+  footer { flex-direction: column; gap: 0.5rem; padding: 2rem 1.25rem 3rem; }
+}
