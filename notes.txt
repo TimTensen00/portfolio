@@ -1,0 +1,11 @@
+git init
+git add .
+git commit -m "eerste versie website"
+git branch -M main
+git remote add origin https://github.com/TimTensen00/portfolio.git
+git push -u origin main
+
+<style>
+  :root { --accent: #56aadf; }
+  #gallery-1 .gallery-stage { aspect-ratio: 8/9; }
+</style>

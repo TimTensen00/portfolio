@@ -193,12 +193,8 @@ def gallery_html(files, teksten, tekstvak_teksten, gallery_id, with_text):
     total = len(files)
     first_caption = teksten[0] if teksten else (files[0].rsplit('.', 1)[0].replace('_', ' ') if files else '')
 
-    footer = f'''      <div class="gallery-footer">
-        <span class="gallery-caption">{first_caption}</span>
-        <span class="gallery-counter">1 / {total}</span>
-      </div>''' if with_text else ''
-
-    caption_html = f'    <p class="media-caption">{first_caption}</p>' if not with_text and teksten else ''
+    footer = ''
+    caption_html = f'    <p class="media-caption">{first_caption}</p>' if teksten else ''
 
     return f'''  <div class="media-blok">
     <div class="media-frame">
