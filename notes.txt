@@ -10,7 +10,11 @@ git commit -m "update"
 git pull origin main --rebase
 git push
 
+
+onder style in betreffende html
 <style>
   :root { --accent: #56aadf; }
   #gallery-1 .gallery-stage { aspect-ratio: 8/9; }
 </style>
+
+python3 generate2.py
