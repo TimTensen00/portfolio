@@ -5,6 +5,11 @@ git branch -M main
 git remote add origin https://github.com/TimTensen00/portfolio.git
 git push -u origin main
 
+git add .
+git commit -m "update"
+git pull origin main --rebase
+git push
+
 <style>
   :root { --accent: #56aadf; }
   #gallery-1 .gallery-stage { aspect-ratio: 8/9; }

@@ -8,10 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>:root { --accent: #4bd7da; }</style>
-  <style>
-  :root { --accent: #56aadf; }
-  #gallery-1 .gallery-stage { aspect-ratio: 8/9; }
-</style>
 </head>
 <body>
 
@@ -46,7 +42,7 @@
     <div class="media-frame">
     <div class="gallery gallery-tekstvak" id="gallery-1">
       <div class="gallery-stage">
-      <div class="gallery-item active" data-caption="Animatie van de Defensie plannen" data-loop="false">
+      <div class="gallery-item active" data-caption="Animatie van de Defensie plannen" data-loop="true">
         <div class="video-badge">animatie</div>
         <video src="images/2_5_1_defensie11.mp4" muted playsinline preload="auto"></video>
         <div class="slide-text">Animatie van de Defensie plannen</div>
@@ -77,7 +73,6 @@
           </button>
         </div>
       </div>
-
     </div>
     </div>
     <p class="media-caption">Animatie van de Defensie plannen</p>
@@ -199,7 +194,6 @@
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
 
-    // Init
     items[0].classList.add('active');
     prevBtn.classList.add('hidden');
     nextBtn.classList.toggle('hidden', total <= 1);

@@ -6,237 +6,36 @@
   <title>Tim Tensen — Data-ontwerper</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black: #111110;
-      --white: #F7F5F0;
-      --gray: #888884;
-      --border: #DDDBD4;
-      --max: 680px;
-      --col-stikstof: #d9c043;
-      --col-klimaat: #fe6836;
-      --col-stad: #ab58e3;
-      --col-routes: #56aadf;
-      --col-overig: #4bd7da;
-    }
-
-    html { font-size: 16px; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      background: var(--white);
-      color: var(--black);
-      line-height: 1.6;
-    }
-
-    /* NAV */
-    nav {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-
-    .nav-name {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.1rem;
-      color: var(--black);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.85rem;
-      color: var(--gray);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-    }
-
-    .nav-links a:hover { color: var(--black); }
-
-    /* MAIN */
-    main {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* INTRO */
-    .intro {
-      padding: 4rem 0 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .intro h1 {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      line-height: 1.2;
-      margin-bottom: 1.25rem;
-      max-width: 560px;
-    }
-
-    .intro h1 em {
-      font-style: italic;
-      color: var(--gray);
-    }
-
-    .intro p {
-      font-size: 1rem;
-      color: var(--gray);
-      max-width: 480px;
-      line-height: 1.7;
-    }
-
-    /* WERK LABEL */
-    .werk-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray);
-      padding: 2.5rem 0 1.25rem;
-    }
-
-    /* HOOFDSTUK CARD */
-    .hoofdstuk {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 0;
-      position: relative;
-    }
-
-    .hoofdstuk:last-child {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hoofdstuk-inner {
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    /* THUMB — begint met grote padding, scroll en hover maken hem groter */
-    .thumb {
-      aspect-ratio: 1;
-      position: relative;
-      overflow: hidden;
-      padding:  1rem;
-      transition: padding 0.6s ease-in-out;
-    }
-
-    /* Accentkleur per thema als achtergrond */
-    .stikstof .thumb { background: var(--col-stikstof); }
-    .klimaat  .thumb { background: var(--col-klimaat); }
-    .stad     .thumb { background: var(--col-stad); }
-    .routes   .thumb { background: var(--col-routes); }
-    .overig   .thumb { background: var(--col-overig); }
-
-    /* In beeld gescrold: iets minder padding */
-    .thumb.in-view {
-      padding: 0.5rem;
-    }
-
-    /* Hover: volledig beeldvullend */
-    .hoofdstuk:hover .thumb {
-      padding: 0;
-    }
-
-    /* Afbeelding met dropshadow */
-    .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      box-shadow: 6px 6px 12px rgba(0,0,0,0.35);
-      transition: box-shadow 0.4s ease;
-    }
-
-    /* Schaduw verdwijnt bij hover */
-    .hoofdstuk:hover .thumb img {
-      box-shadow: none;
-    }
-
-    /* Themakleur streepje bovenaan elke card */
-    .hoofdstuk::before {
-      content: '';
-      display: block;
-      height: 2px;
-      width: 2rem;
-      margin-bottom: 1.75rem;
-      margin-top: -1.75rem;
-    }
-
-    .hoofdstuk.stikstof::before { background: var(--col-stikstof); }
-    .hoofdstuk.klimaat::before  { background: var(--col-klimaat); }
-    .hoofdstuk.stad::before     { background: var(--col-stad); }
-    .hoofdstuk.routes::before   { background: var(--col-routes); }
-    .hoofdstuk.overig::before   { background: var(--col-overig); }
-
-    /* META */
-    .hoofdstuk-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-top: 0.5rem;
-    }
-
-    .hoofdstuk-titel {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-size: 1.25rem;
-    }
-
-    .hoofdstuk-sub {
-      font-size: 0.8rem;
-      color: var(--gray);
-      margin-top: 0.2rem;
-    }
-
-    .hoofdstuk-pijl {
-      font-size: 0.85rem;
-      color: var(--gray);
-      transition: transform 0.2s ease, color 0.2s ease;
-    }
-
-    .hoofdstuk:hover .hoofdstuk-pijl {
-      transform: translateX(4px);
-      color: var(--black);
-    }
-
-    /* FOOTER */
-    footer {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 3rem 1.5rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border);
-      margin-top: 3rem;
-    }
-
-    footer p { font-size: 0.8rem; color: var(--gray); }
-    footer a { font-size: 0.8rem; color: var(--gray); text-decoration: none; }
-    footer a:hover { color: var(--black); }
-
-    @media (max-width: 480px) {
-      nav { padding: 2rem 1.25rem 0; }
-      main { padding: 0 1.25rem; }
-      .intro { padding: 3rem 0 2.5rem; }
-      footer { flex-direction: column; gap: 0.5rem; padding: 2rem 1.25rem 3rem; }
-    }
+    .intro { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+    .intro h1 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.2; margin-bottom: 1.25rem; max-width: 560px; }
+    .intro h1 em { font-style: italic; color: var(--gray); }
+    .intro p { font-size: 1rem; color: var(--gray); max-width: 480px; line-height: 1.7; }
+    .werk-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); padding: 2.5rem 0 1.25rem; }
+    .hoofdstuk { display: block; text-decoration: none; color: inherit; border-top: 1px solid var(--border); padding: 1.75rem 0; position: relative; }
+    .hoofdstuk:last-child { border-bottom: 1px solid var(--border); }
+    .hoofdstuk::before { content: ''; display: block; height: 2px; width: 2rem; margin-bottom: 1.75rem; margin-top: -1.75rem; }
+    .h1::before { background: #d9c043; }
+    .h2::before { background: #fe6836; }
+    .h3::before { background: #56aadf; }
+    .h4::before { background: #ab58e3; }
+    .h5::before { background: #4bd7da; }
+    .hoofdstuk-inner { margin-bottom: 1rem; position: relative; }
+    .thumb { aspect-ratio: 1; position: relative; overflow: hidden; padding: 20px; transition: padding 0.6s ease-in-out; }
+    .h1 .thumb { background: #d9c043; }
+    .h2 .thumb { background: #fe6836; }
+    .h3 .thumb { background: #56aadf; }
+    .h4 .thumb { background: #ab58e3; }
+    .h5 .thumb { background: #4bd7da; }
+    .thumb.is-hovered { padding: 0; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 6px 6px 14px rgba(0,0,0,0.32); transition: box-shadow 0.4s ease; }
+    .thumb.is-hovered img { box-shadow: none; }
+    .hoofdstuk-meta { display: flex; justify-content: space-between; align-items: baseline; margin-top: 0.75rem; }
+    .hoofdstuk-titel { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.25rem; }
+    .hoofdstuk-sub { font-size: 0.8rem; color: var(--gray); margin-top: 0.2rem; }
+    .hoofdstuk-pijl { font-size: 0.85rem; color: var(--gray); transition: transform 0.2s ease, color 0.2s ease; }
+    .hoofdstuk.is-hovered-card .hoofdstuk-pijl { transform: translateX(4px); color: var(--black); }
   </style>
 </head>
 <body>
@@ -259,85 +58,81 @@
 
   <p class="werk-label">Werk</p>
 
-  <!-- STIKSTOF -->
-  <a class="hoofdstuk stikstof" href="stikstof.html">
+  <a class="hoofdstuk h1" href="routes.html">
     <div class="hoofdstuk-inner">
       <div class="thumb">
-        <img src="images/1_1_stikstof.png" alt="Stikstof">
+        <img src="images/1_1_rout.png" alt="Routes en beweging">
       </div>
     </div>
     <div class="hoofdstuk-meta">
       <div>
-        <div class="hoofdstuk-titel">Stikstof</div>
-        <div class="hoofdstuk-sub">NRC · Follow the Money</div>
+        <div class="hoofdstuk-titel">Routes en beweging</div>
+        <div class="hoofdstuk-sub">Follow the Money · Den Haag Centraal, SPIT · Eigen project</div>
       </div>
       <span class="hoofdstuk-pijl">→</span>
     </div>
   </a>
 
-  <!-- KLIMAAT -->
-  <a class="hoofdstuk klimaat" href="klimaat.html">
+  <a class="hoofdstuk h2" href="stikstof.html">
     <div class="hoofdstuk-inner">
       <div class="thumb">
-        <img src="images/1_2_aarde.png" alt="Klimaat">
+        <img src="images/1_1_stik.png" alt="stikstoffff">
       </div>
     </div>
     <div class="hoofdstuk-meta">
       <div>
-        <div class="hoofdstuk-titel">Klimaat</div>
+        <div class="hoofdstuk-titel">stikstoffff</div>
+        <div class="hoofdstuk-sub">Eigen project · NRC · Follow the Money</div>
+      </div>
+      <span class="hoofdstuk-pijl">→</span>
+    </div>
+  </a>
+
+  <a class="hoofdstuk h3" href="stad.html">
+    <div class="hoofdstuk-inner">
+      <div class="thumb">
+        <img src="images/1_1_stad.png" alt="Stad en data">
+      </div>
+    </div>
+    <div class="hoofdstuk-meta">
+      <div>
+        <div class="hoofdstuk-titel">Stad en data</div>
+        <div class="hoofdstuk-sub">Eigen project, 30DayMapChallenge · NRC, eigen project · NRC</div>
+      </div>
+      <span class="hoofdstuk-pijl">→</span>
+    </div>
+  </a>
+
+  <a class="hoofdstuk h4" href="klimaat.html">
+    <div class="hoofdstuk-inner">
+      <div class="thumb">
+        <img src="images/1_1_klim.png" alt="Klimaat en aarde">
+      </div>
+    </div>
+    <div class="hoofdstuk-meta">
+      <div>
+        <div class="hoofdstuk-titel">Klimaat en aarde</div>
         <div class="hoofdstuk-sub">NRC</div>
       </div>
       <span class="hoofdstuk-pijl">→</span>
     </div>
   </a>
 
-  <!-- DE STAD -->
-  <a class="hoofdstuk stad" href="stad.html">
+  <a class="hoofdstuk h5" href="overig.html">
     <div class="hoofdstuk-inner">
       <div class="thumb">
-        <img src="images/1_4_stad.png" alt="De stad">
+        <img src="images/1_1_over.png" alt="Overige projecten">
       </div>
     </div>
     <div class="hoofdstuk-meta">
       <div>
-        <div class="hoofdstuk-titel">De stad</div>
-        <div class="hoofdstuk-sub">NRC · eigen werk</div>
+        <div class="hoofdstuk-titel">Overige projecten</div>
+        <div class="hoofdstuk-sub">NRC · RD</div>
       </div>
       <span class="hoofdstuk-pijl">→</span>
     </div>
   </a>
 
-  <!-- ROUTES -->
-  <a class="hoofdstuk routes" href="routes.html">
-    <div class="hoofdstuk-inner">
-      <div class="thumb">
-        <img src="images/1_3_beweging.png" alt="Routes">
-      </div>
-    </div>
-    <div class="hoofdstuk-meta">
-      <div>
-        <div class="hoofdstuk-titel">Routes</div>
-        <div class="hoofdstuk-sub">DHC · Follow the Money</div>
-      </div>
-      <span class="hoofdstuk-pijl">→</span>
-    </div>
-  </a>
-
-  <!-- overig -->
-  <a class="hoofdstuk overig" href="overig.html">
-    <div class="hoofdstuk-inner">
-      <div class="thumb">
-        <img src="images/1_5_overig.png" alt="Overig">
-      </div>
-    </div>
-    <div class="hoofdstuk-meta">
-      <div>
-        <div class="hoofdstuk-titel">Routes</div>
-        <div class="hoofdstuk-sub">DHC · Follow the Money</div>
-      </div>
-      <span class="hoofdstuk-pijl">→</span>
-    </div>
-  </a>
 </main>
 
 <footer>
@@ -346,16 +141,40 @@
 </footer>
 
 <script>
+  let isScrolling = false;
+  let scrollTimer;
+
   function checkThumbs() {
     document.querySelectorAll('.thumb').forEach(thumb => {
       const rect = thumb.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const inView = rect.top < windowHeight * 0.5 && rect.bottom > windowHeight * 0.5;
+      const inView = rect.top < windowHeight * 0.7 && rect.bottom > windowHeight * 0.3;
       thumb.classList.toggle('in-view', inView);
     });
   }
 
-  window.addEventListener('scroll', checkThumbs);
+  window.addEventListener('scroll', () => {
+    isScrolling = true;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => { isScrolling = false; }, 150);
+    checkThumbs();
+  });
+
+  document.querySelectorAll('.hoofdstuk').forEach(hoofdstuk => {
+    const thumb = hoofdstuk.querySelector('.thumb');
+    hoofdstuk.addEventListener('mouseenter', () => {
+      if (!isScrolling) {
+        thumb.classList.add('is-hovered');
+        hoofdstuk.classList.add('is-hovered-card');
+      }
+    });
+    hoofdstuk.addEventListener('mouseleave', () => {
+      thumb.classList.remove('is-hovered');
+      hoofdstuk.classList.remove('is-hovered-card');
+    });
+  });
+
+  checkThumbs();
 </script>
 
 </body>

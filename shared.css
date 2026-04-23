@@ -152,6 +152,7 @@ main {
   background: var(--accent);
   padding: 0.5rem;
   display: block;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .media-frame img,
@@ -208,7 +209,7 @@ main {
 
 .video-badge {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   left: 10px;
   background: rgba(0,0,0,0.55);
   color: rgba(255,255,255,0.85);

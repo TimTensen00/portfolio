@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
-  <style>:root { --accent: #56aadf; }</style>
+  <style>:root { --accent: #d9c043; }</style>
 </head>
 <body>
 
@@ -64,7 +64,6 @@
           </button>
         </div>
       </div>
-
     </div>
     </div>
     <p class="media-caption">tekst animatie</p>
@@ -191,7 +190,6 @@
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
 
-    // Init
     items[0].classList.add('active');
     prevBtn.classList.add('hidden');
     nextBtn.classList.toggle('hidden', total <= 1);
