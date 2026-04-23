@@ -15,19 +15,10 @@
     .werk-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); padding: 2.5rem 0 1.25rem; }
     .hoofdstuk { display: block; text-decoration: none; color: inherit; border-top: 1px solid var(--border); padding: 1.75rem 0; position: relative; }
     .hoofdstuk:last-child { border-bottom: 1px solid var(--border); }
-    .hoofdstuk::before { content: ''; display: block; height: 2px; width: 2rem; margin-bottom: 1.75rem; margin-top: -1.75rem; }
-    .h1::before { background: #d9c043; }
-    .h2::before { background: #fe6836; }
-    .h3::before { background: #56aadf; }
-    .h4::before { background: #ab58e3; }
-    .h5::before { background: #4bd7da; }
+    .hoofdstuk::before { content: ''; display: block; height: 2px; width: 2rem; background: var(--accent); margin-bottom: 1.75rem; margin-top: -1.75rem; }
     .hoofdstuk-inner { margin-bottom: 1rem; position: relative; }
-    .thumb { aspect-ratio: 1; position: relative; overflow: hidden; padding: 20px; transition: padding 0.6s ease-in-out; }
-    .h1 .thumb { background: #d9c043; }
-    .h2 .thumb { background: #fe6836; }
-    .h3 .thumb { background: #56aadf; }
-    .h4 .thumb { background: #ab58e3; }
-    .h5 .thumb { background: #4bd7da; }
+    .thumb { aspect-ratio: 1; position: relative; overflow: hidden; -webkit-mask-image: -webkit-radial-gradient(white, black); padding: 20px; transition: padding 0.6s ease-in-out; }
+    .thumb.in-view { padding: 10px; }
     .thumb.is-hovered { padding: 0; }
     .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 6px 6px 14px rgba(0,0,0,0.32); transition: box-shadow 0.4s ease; }
     .thumb.is-hovered img { box-shadow: none; }
@@ -58,24 +49,24 @@
 
   <p class="werk-label">Werk</p>
 
-  <a class="hoofdstuk h1" href="routes.html">
+  <a class="hoofdstuk" href="routes_beweging.html" style="--accent: #56aadf;">
     <div class="hoofdstuk-inner">
-      <div class="thumb">
+      <div class="thumb" style="background: #56aadf;">
         <img src="images/1_1_rout.png" alt="Routes en beweging">
       </div>
     </div>
     <div class="hoofdstuk-meta">
       <div>
         <div class="hoofdstuk-titel">Routes en beweging</div>
-        <div class="hoofdstuk-sub">Follow the Money · Den Haag Centraal, SPIT · Eigen project</div>
+        <div class="hoofdstuk-sub">Den Haag Centraal, SPIT · Follow the Money · Steven Mons</div>
       </div>
       <span class="hoofdstuk-pijl">→</span>
     </div>
   </a>
 
-  <a class="hoofdstuk h2" href="stikstof.html">
+  <a class="hoofdstuk" href="stikstof.html" style="--accent: #d9c043;">
     <div class="hoofdstuk-inner">
-      <div class="thumb">
+      <div class="thumb" style="background: #d9c043;">
         <img src="images/1_1_stik.png" alt="stikstoffff">
       </div>
     </div>
@@ -88,9 +79,9 @@
     </div>
   </a>
 
-  <a class="hoofdstuk h3" href="stad.html">
+  <a class="hoofdstuk" href="stad_data.html" style="--accent: #ab58e3;">
     <div class="hoofdstuk-inner">
-      <div class="thumb">
+      <div class="thumb" style="background: #ab58e3;">
         <img src="images/1_1_stad.png" alt="Stad en data">
       </div>
     </div>
@@ -103,9 +94,9 @@
     </div>
   </a>
 
-  <a class="hoofdstuk h4" href="klimaat.html">
+  <a class="hoofdstuk" href="klimaat_aarde.html" style="--accent: #fe6836;">
     <div class="hoofdstuk-inner">
-      <div class="thumb">
+      <div class="thumb" style="background: #fe6836;">
         <img src="images/1_1_klim.png" alt="Klimaat en aarde">
       </div>
     </div>
@@ -118,9 +109,9 @@
     </div>
   </a>
 
-  <a class="hoofdstuk h5" href="overig.html">
+  <a class="hoofdstuk" href="overig.html" style="--accent: #4bd7da;">
     <div class="hoofdstuk-inner">
-      <div class="thumb">
+      <div class="thumb" style="background: #4bd7da;">
         <img src="images/1_1_over.png" alt="Overige projecten">
       </div>
     </div>

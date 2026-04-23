@@ -2,31 +2,6 @@ import csv
 import os
 from collections import defaultdict
 
-KLEUREN = {
-    '1': '#d9c043',
-    '2': '#fe6836',
-    '3': '#56aadf',
-    '4': '#ab58e3',
-    '5': '#4bd7da',
-}
-
-PAGINAS = {
-    '1': 'routes.html',
-    '2': 'stikstof.html',
-    '3': 'stad.html',
-    '4': 'klimaat.html',
-    '5': 'overig.html',
-}
-
-# Alleen pagina en kleur — naam komt uit CSV
-HOOFDSTUK_META = {
-    '1': ('routes.html', '#56aadf'),
-    '2': ('stikstof.html', '#d9c043'),
-    '3': ('stad.html', '#ab58e3'),
-    '4': ('klimaat.html', '#fe6836'),
-    '5': ('overig.html', '#4bd7da'),
-}
-
 def is_video(filename):
     return filename.lower().endswith(('.mp4', '.webm', '.mov'))
 
@@ -35,6 +10,23 @@ def parse_list(val):
 
 def parse_teksten(val):
     return [t.strip() for t in val.split('|')] if val.strip() else []
+
+def get_hoofdstuk_meta(rows):
+    meta = {}
+    for row in rows:
+        nr = row['hoofdstuknr'].strip()
+        if nr and nr not in meta:
+            naam     = row.get('hoofdstuknaam', '').strip()
+            kleur    = row.get('kleur', '#888884').strip()
+            pagina   = row.get('pagina', f'hoofdstuk{nr}.html').strip()
+            volgorde = row.get('volgorde', nr).strip()
+            meta[nr] = {
+                'naam':     naam,
+                'kleur':    kleur,
+                'pagina':   pagina,
+                'volgorde': int(volgorde) if volgorde.isdigit() else int(nr),
+            }
+    return meta
 
 def nav_html():
     return '''<nav>
@@ -143,12 +135,14 @@ def arrow_btns():
           </button>
         </div>'''
 
-def media_tag_inline(filename):
+def media_tag_inline(filename, extra_style=''):
     if is_video(filename):
-        return f'<video src="images/{filename}" autoplay loop muted playsinline></video>'
+        style_attr = f' style="{extra_style}"' if extra_style else ''
+        return f'<video src="images/{filename}" autoplay loop muted playsinline{style_attr}></video>'
     else:
         alt = filename.rsplit('.', 1)[0].replace('_', ' ')
-        return f'<img src="images/{filename}" alt="{alt}">'
+        style_attr = f' style="{extra_style}"' if extra_style else ''
+        return f'<img src="images/{filename}" alt="{alt}"{style_attr}>'
 
 def gallery_item_html(filename, caption, tekstvak_tekst, index):
     active = ' active' if index == 0 else ''
@@ -165,11 +159,13 @@ def gallery_item_html(filename, caption, tekstvak_tekst, index):
         {badge}{tag}{tekstvak}
       </div>'''
 
-def losse_images_html(files, teksten):
+def losse_images_html(files, teksten, ratios=None):
     blocks = []
     for i, f in enumerate(files):
         caption = teksten[i] if i < len(teksten) else f.rsplit('.', 1)[0].replace('_', ' ')
-        tag = media_tag_inline(f)
+        ratio = ratios[i] if ratios and i < len(ratios) and ratios[i].strip() else ''
+        extra_style = f'aspect-ratio: {ratio}; object-fit: cover;' if ratio else ''
+        tag = media_tag_inline(f, extra_style)
         blocks.append(f'''  <div class="media-blok">
     <div class="media-frame">{tag}</div>
     <p class="media-caption">{caption}</p>
@@ -223,6 +219,7 @@ def case_html(row, gallery_counter):
     tekst_images  = parse_teksten(row.get('tekst_images', ''))
     tekst_gallery = parse_teksten(row.get('tekst_gallery', ''))
     tekst_gmt     = parse_teksten(row.get('tekst_gallery_met_tekstvak', ''))
+    ratios_images = parse_teksten(row.get('aspect_ratio', ''))
     flourish_url  = row.get('flourish_url', '').strip()
     flourish_cap  = row.get('tekst_flourish', '').strip()
     tekst_case    = row.get('tekst_case', '').strip()
@@ -233,7 +230,7 @@ def case_html(row, gallery_counter):
         content.append(f'  <p class="case-tekst">{tekst_case}</p>')
 
     if naam_images:
-        content.append(losse_images_html(naam_images, tekst_images))
+        content.append(losse_images_html(naam_images, tekst_images, ratios_images))
 
     if naam_gallery:
         gid = f'gallery-{gallery_counter[0]}'
@@ -295,8 +292,7 @@ def generate_page(nr, naam, cases, accent):
 </body>
 </html>'''
 
-def generate_index(rows):
-    # Eerste rij per hoofdstuk ophalen
+def generate_index(rows, hoofdstuk_meta):
     eerste_rijen = {}
     for row in rows:
         nr = row['hoofdstuknr'].strip()
@@ -304,28 +300,26 @@ def generate_index(rows):
             eerste_rijen[nr] = row
 
     hoofdstuk_items = []
-    for nr in sorted(HOOFDSTUK_META.keys()):
-        pagina, kleur = HOOFDSTUK_META[nr]
-        row = eerste_rijen.get(nr, {})
+    for nr in sorted(hoofdstuk_meta.keys(), key=lambda n: hoofdstuk_meta[n]['volgorde']):
+        meta   = hoofdstuk_meta[nr]
+        naam   = meta['naam']
+        pagina = meta['pagina']
+        kleur  = meta['kleur']
+        row    = eerste_rijen.get(nr, {})
 
-        # Naam uit CSV-kolom hoofdstuknaam
-        naam = row.get('hoofdstuknaam', '').strip()
-
-        # Thumbnail: uit CSV-kolom 'thumbnail', anders automatisch
         thumbnail = row.get('thumbnail', '').strip()
         if not thumbnail:
             thumbnail = f"1_1_{naam[:4].lower()}.png"
 
-        # Opdrachtgevers verzamelen als subnaam
         opdrachtgevers = list(dict.fromkeys(
             r['opdrachtgever'] for r in rows
             if r['hoofdstuknr'].strip() == nr and r['opdrachtgever'].strip()
         ))
         sub = ' · '.join(opdrachtgevers[:3])
 
-        hoofdstuk_items.append(f'''  <a class="hoofdstuk h{nr}" href="{pagina}">
+        hoofdstuk_items.append(f'''  <a class="hoofdstuk" href="{pagina}" style="--accent: {kleur};">
     <div class="hoofdstuk-inner">
-      <div class="thumb">
+      <div class="thumb" style="background: {kleur};">
         <img src="images/{thumbnail}" alt="{naam}">
       </div>
     </div>
@@ -357,19 +351,10 @@ def generate_index(rows):
     .werk-label {{ font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); padding: 2.5rem 0 1.25rem; }}
     .hoofdstuk {{ display: block; text-decoration: none; color: inherit; border-top: 1px solid var(--border); padding: 1.75rem 0; position: relative; }}
     .hoofdstuk:last-child {{ border-bottom: 1px solid var(--border); }}
-    .hoofdstuk::before {{ content: ''; display: block; height: 2px; width: 2rem; margin-bottom: 1.75rem; margin-top: -1.75rem; }}
-    .h1::before {{ background: #d9c043; }}
-    .h2::before {{ background: #fe6836; }}
-    .h3::before {{ background: #56aadf; }}
-    .h4::before {{ background: #ab58e3; }}
-    .h5::before {{ background: #4bd7da; }}
+    .hoofdstuk::before {{ content: ''; display: block; height: 2px; width: 2rem; background: var(--accent); margin-bottom: 1.75rem; margin-top: -1.75rem; }}
     .hoofdstuk-inner {{ margin-bottom: 1rem; position: relative; }}
-    .thumb {{ aspect-ratio: 1; position: relative; overflow: hidden; padding: 20px; transition: padding 0.6s ease-in-out; }}
-    .h1 .thumb {{ background: #d9c043; }}
-    .h2 .thumb {{ background: #fe6836; }}
-    .h3 .thumb {{ background: #56aadf; }}
-    .h4 .thumb {{ background: #ab58e3; }}
-    .h5 .thumb {{ background: #4bd7da; }}
+    .thumb {{ aspect-ratio: 1; position: relative; overflow: hidden; -webkit-mask-image: -webkit-radial-gradient(white, black); padding: 20px; transition: padding 0.6s ease-in-out; }}
+    .thumb.in-view {{ padding: 10px; }}
     .thumb.is-hovered {{ padding: 0; }}
     .thumb img {{ width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 6px 6px 14px rgba(0,0,0,0.32); transition: box-shadow 0.4s ease; }}
     .thumb.is-hovered img {{ box-shadow: none; }}
@@ -459,6 +444,8 @@ with open(csv_path, encoding='utf-8') as f:
     for row in reader:
         rows.append(row)
 
+hoofdstuk_meta = get_hoofdstuk_meta(rows)
+
 hoofdstukken = defaultdict(list)
 for row in rows:
     nr = row['hoofdstuknr'].strip()
@@ -468,9 +455,10 @@ for row in rows:
 output_dir = script_dir
 
 for nr, cases_rows in sorted(hoofdstukken.items()):
-    naam = cases_rows[0]['hoofdstuknaam'].strip()
-    accent = KLEUREN.get(nr, '#888884')
-    filename = PAGINAS.get(nr, f'hoofdstuk{nr}.html')
+    meta     = hoofdstuk_meta.get(nr, {})
+    naam     = meta.get('naam', f'hoofdstuk{nr}')
+    accent   = meta.get('kleur', '#888884')
+    filename = meta.get('pagina', f'hoofdstuk{nr}.html')
     gallery_counter = [1]
     cases = [case_html(row, gallery_counter) for row in cases_rows]
     html = generate_page(nr, naam, cases, accent)
@@ -478,7 +466,7 @@ for nr, cases_rows in sorted(hoofdstukken.items()):
         f.write(html)
     print(f'Gegenereerd: {filename}')
 
-index_html = generate_index(rows)
+index_html = generate_index(rows, hoofdstuk_meta)
 with open(os.path.join(output_dir, 'index.html'), 'w', encoding='utf-8') as f:
     f.write(index_html)
 print('Gegenereerd: index.html')
