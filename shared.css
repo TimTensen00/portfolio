@@ -116,6 +116,32 @@ main {
   margin-bottom: 1rem;
 }
 
+/* ── HOOFDSTUK NAVIGATIE ── */
+.hoofdstuk-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hoofdstuk-nav .hnav-actief {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.2;
+}
+
+.hoofdstuk-nav .hnav-link {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1rem;
+  color: var(--gray);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.hoofdstuk-nav .hnav-link:hover { color: var(--black); }
+
+
 /* ── SECTIES — generiek herbruikbaar ── */
 .sectie {
   margin-top: 3rem;
@@ -360,7 +386,7 @@ main {
 }
 
 .over-foto {
-  width: 120px;
+  width: 170px;
   aspect-ratio: 1;
   background: #E0DDD6;
   overflow: hidden;

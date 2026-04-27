@@ -8,6 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>:root { --accent: #4bd7da; }</style>
+  <style>
+  :root { --accent: #4bd7da; }
+  #gallery-1 .gallery-stage { aspect-ratio: 8/9; }
+</style>
 </head>
 <body>
 
@@ -16,7 +20,7 @@
   <ul class="nav-links">
     <li><a href="index.html">Werk</a></li>
     <li><a href="over.html">Over</a></li>
-    <li><a href="mailto:info@timtensen.nl">Contact</a></li>
+    
   </ul>
 </nav>
 
@@ -25,7 +29,7 @@
   <div class="pagina-header">
     <a class="terug" href="index.html">← Alle hoofdstukken</a>
     <div class="accent-lijn"></div>
-    <h1>Overige projecten</h1>
+    <nav class="hoofdstuk-nav"><a class="hnav-link" href="routes_beweging.html">Routes en beweging</a><a class="hnav-link" href="stad_data.html">Stad en data</a><a class="hnav-link" href="stikstof.html">stikstof</a><a class="hnav-link" href="klimaat_aarde.html">Klimaat en aarde</a><span class="hnav-actief">Overige projecten</span></nav>
   </div>
 
 <div class="case">
@@ -54,7 +58,7 @@
     <div class="media-frame">
     <div class="gallery gallery-tekstvak" id="gallery-1">
       <div class="gallery-stage">
-      <div class="gallery-item active" data-caption="Animatie van de Defensie plannen" data-loop="true">
+      <div class="gallery-item active" data-caption="Animatie van de Defensie plannen" data-loop="false">
         <div class="video-badge">animatie</div>
         <video src="images/2_5_1_defensie11.mp4" muted playsinline preload="auto"></video>
         <div class="slide-text">Animatie van de Defensie plannen</div>
@@ -103,12 +107,16 @@
   </div>
 </div>
 
+  <div class="sectie">
+    <nav class="hoofdstuk-nav"><a class="hnav-link" href="routes_beweging.html">Routes en beweging</a><a class="hnav-link" href="stad_data.html">Stad en data</a><a class="hnav-link" href="stikstof.html">stikstof</a><a class="hnav-link" href="klimaat_aarde.html">Klimaat en aarde</a><span class="hnav-actief">Overige projecten</span></nav>
+  </div>
+
 </main>
 
 <footer>
   <p>© 2025 Tim Tensen</p>
   <a href="mailto:info@timtensen.nl">info@timtensen.nl</a>
-  <p style="font-size: 0.7rem; color: var(--gray); margin-top: 0.25rem;">BTW NL004305988B09</p>
+  <p class="footer-btw">BTW NL004305988B09</p>
 </footer>
 
 <script>
