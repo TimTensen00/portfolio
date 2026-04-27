@@ -17,7 +17,7 @@
     .hoofdstuk:last-child { border-bottom: 1px solid var(--border); }
     .hoofdstuk::before { content: ''; display: block; height: 2px; width: 2rem; background: var(--accent); margin-bottom: 1.75rem; margin-top: -1.75rem; }
     .hoofdstuk-inner { margin-bottom: 1rem; position: relative; }
-    .thumb { aspect-ratio: 1; position: relative; overflow: hidden; -webkit-mask-image: -webkit-radial-gradient(white, black); padding: 20px; transition: padding 0.6s ease-in-out; }
+    .thumb { aspect-ratio: 1; position: relative; overflow: hidden; -webkit-mask-image: -webkit-radial-gradient(white, black); transform: translateZ(0); padding: 20px; transition: padding 0.6s ease-in-out; }
     .thumb.in-view { padding: 10px; }
     .thumb.is-hovered { padding: 0; }
     .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 6px 6px 14px rgba(0,0,0,0.32); transition: box-shadow 0.4s ease; }
@@ -58,22 +58,7 @@
     <div class="hoofdstuk-meta">
       <div>
         <div class="hoofdstuk-titel">Routes en beweging</div>
-        <div class="hoofdstuk-sub">Den Haag Centraal, SPIT · Follow the Money · Steven Mons</div>
-      </div>
-      <span class="hoofdstuk-pijl">→</span>
-    </div>
-  </a>
-
-  <a class="hoofdstuk" href="stikstof.html" style="--accent: #d9c043;">
-    <div class="hoofdstuk-inner">
-      <div class="thumb" style="background: #d9c043;">
-        <img src="images/1_1_stik.png" alt="stikstoffff">
-      </div>
-    </div>
-    <div class="hoofdstuk-meta">
-      <div>
-        <div class="hoofdstuk-titel">stikstoffff</div>
-        <div class="hoofdstuk-sub">Eigen project · NRC · Follow the Money</div>
+        <div class="hoofdstuk-sub">Den Haag Centraal, SPIT · Follow the Money · América Invertida</div>
       </div>
       <span class="hoofdstuk-pijl">→</span>
     </div>
@@ -89,6 +74,21 @@
       <div>
         <div class="hoofdstuk-titel">Stad en data</div>
         <div class="hoofdstuk-sub">Eigen project, 30DayMapChallenge · NRC, eigen project · NRC</div>
+      </div>
+      <span class="hoofdstuk-pijl">→</span>
+    </div>
+  </a>
+
+  <a class="hoofdstuk" href="stikstof.html" style="--accent: #d9c043;">
+    <div class="hoofdstuk-inner">
+      <div class="thumb" style="background: #d9c043;">
+        <img src="images/1_1_stik.png" alt="stikstof">
+      </div>
+    </div>
+    <div class="hoofdstuk-meta">
+      <div>
+        <div class="hoofdstuk-titel">stikstof</div>
+        <div class="hoofdstuk-sub">Eigen project · NRC · Follow the Money</div>
       </div>
       <span class="hoofdstuk-pijl">→</span>
     </div>
@@ -129,6 +129,7 @@
 <footer>
   <p>© 2025 Tim Tensen</p>
   <a href="mailto:info@timtensen.nl">info@timtensen.nl</a>
+  <p style="font-size: 0.7rem; color: var(--gray); margin-top: 0.25rem;">BTW NL004305988B09</p>
 </footer>
 
 <script>

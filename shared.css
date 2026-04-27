@@ -10,8 +10,8 @@
   --white: #F7F5F0;
   --gray: #888884;
   --border: #DDDBD4;
-  --max: 680px;
-  --accent: #888884; /* wordt overschreven per pagina */
+  --max: 600px;
+  --accent: #888884;
 }
 
 html { font-size: 16px; }
@@ -22,6 +22,33 @@ body {
   background: var(--white);
   color: var(--black);
   line-height: 1.6;
+}
+
+/* ── TYPOGRAFIE ── */
+h1 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.subtekst {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.intro-tekst {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
 /* ── NAV ── */
@@ -63,8 +90,8 @@ main {
   padding: 0 1.5rem;
 }
 
-/* ── HOOFDSTUK HEADER ── */
-.hoofdstuk-header {
+/* ── PAGINA HEADER — gebruikt op hoofdstuk- en over-pagina ── */
+.pagina-header {
   padding: 3rem 0 2.5rem;
   border-bottom: 1px solid var(--border);
   margin-bottom: 3rem;
@@ -89,19 +116,45 @@ main {
   margin-bottom: 1rem;
 }
 
-.hoofdstuk-header h1 {
-  font-family: 'Instrument Serif', serif;
-  font-weight: 400;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
+/* ── SECTIES — generiek herbruikbaar ── */
+.sectie {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
 }
 
-.hoofdstuk-header p {
-  font-size: 0.95rem;
+.sectie-titel {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--gray);
-  max-width: 480px;
-  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* ── CONTACT LINKS ── */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-links a {
+  font-size: 1rem;
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-links a:hover { border-bottom-color: var(--black); }
+
+.contact-links a span {
+  font-size: 0.85rem;
+  color: var(--gray);
 }
 
 /* ── CASE ── */
@@ -147,10 +200,9 @@ main {
 
 .media-blok + .media-blok { margin-top: 0.75rem; }
 
-/* Kleurvlak met padding en dropshadow — stilstaand */
 .media-frame {
   background: var(--accent);
-  padding: 0.5rem;
+  padding: 0.3rem;
   display: block;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
@@ -262,13 +314,7 @@ main {
 .gallery-btn:hover { background: rgba(0,0,0,0.25); }
 .gallery-btn.hidden { opacity: 0; pointer-events: none; }
 
-.gallery-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 0.5rem;
-  gap: 1rem;
-}
+.gallery-footer { display: none; }
 
 .gallery-caption {
   font-size: 0.78rem;
@@ -305,23 +351,57 @@ main {
 .slide-text.visible { transform: translateY(0); opacity: 1; }
 .slide-text.exit-up { transform: translateY(-150%); opacity: 0; }
 
+/* ── OVER PAGINA ── */
+.over-intro {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: start;
+}
+
+.over-foto {
+  width: 120px;
+  aspect-ratio: 1;
+  background: #E0DDD6;
+  overflow: hidden;
+  flex-shrink: 0;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.over-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.over-tekst {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
 /* ── FOOTER ── */
 footer {
   max-width: var(--max);
   margin: 2rem auto 0;
   padding: 3rem 1.5rem 4rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.25rem;
   border-top: 1px solid var(--border);
 }
 
 footer p { font-size: 0.8rem; color: var(--gray); }
 footer a { font-size: 0.8rem; color: var(--gray); text-decoration: none; }
 footer a:hover { color: var(--black); }
+.footer-btw { font-size: 0.7rem; color: var(--gray); }
 
 @media (max-width: 480px) {
   nav { padding: 2rem 1.25rem 0; }
   main { padding: 0 1.25rem; }
-  footer { flex-direction: column; gap: 0.5rem; padding: 2rem 1.25rem 3rem; }
+  footer { padding: 2rem 1.25rem 3rem; }
+  .over-intro { grid-template-columns: 1fr; }
+  .over-foto { width: 80px; }
 }
