@@ -10,7 +10,7 @@
   --white: #F7F5F0;
   --gray: #888884;
   --border: #DDDBD4;
-  --max: 600px;
+  --max: 680px;
   --accent: #888884;
 }
 
@@ -63,7 +63,7 @@ nav {
 
 .nav-name {
   font-family: 'Instrument Serif', serif;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: var(--black);
   text-decoration: none;
 }
@@ -72,13 +72,15 @@ nav {
   display: flex;
   gap: 1.5rem;
   list-style: none;
+  
 }
 
 .nav-links a {
-  font-size: 0.85rem;
+  font-size: rem;
   color: var(--gray);
   text-decoration: none;
   letter-spacing: 0.01em;
+  color: black;
 }
 
 .nav-links a:hover { color: var(--black); }
@@ -90,7 +92,7 @@ main {
   padding: 0 1.5rem;
 }
 
-/* ── PAGINA HEADER — gebruikt op hoofdstuk- en over-pagina ── */
+/* ── PAGINA HEADER ── */
 .pagina-header {
   padding: 3rem 0 2.5rem;
   border-bottom: 1px solid var(--border);
@@ -121,6 +123,10 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  max-width: none;
 }
 
 .hoofdstuk-nav .hnav-actief {
@@ -129,11 +135,12 @@ main {
   font-weight: 400;
   color: var(--black);
   line-height: 1.2;
+  color: var(--accent);
 }
 
 .hoofdstuk-nav .hnav-link {
   font-family: 'Instrument Serif', serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--gray);
   text-decoration: none;
   line-height: 1.4;
@@ -141,8 +148,130 @@ main {
 
 .hoofdstuk-nav .hnav-link:hover { color: var(--black); }
 
+/* ── INDEX PAGINA ── */
+.intro {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+}
 
-/* ── SECTIES — generiek herbruikbaar ── */
+.intro h1 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  max-width: 560px;
+}
+
+.intro h1 em {
+  font-style: italic;
+  color: var(--gray);
+}
+
+.intro p {
+  font-size: 1rem;
+  color: var(--gray);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+.werk-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 2.5rem 0 1.25rem;
+}
+
+.hoofdstuk {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid var(--border);
+  padding: 1.75rem 0;
+  position: relative;
+}
+
+.hoofdstuk:last-child { border-bottom: 1px solid var(--border); }
+
+.hoofdstuk::before {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 2rem;
+  background: var(--accent);
+  margin-bottom: 1.75rem;
+  margin-top: -1.75rem;
+}
+
+.hoofdstuk-inner {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.thumb {
+  aspect-ratio: 1;
+  position: relative;
+  padding: 20px;
+  transition: padding 0.6s ease-in-out;
+}
+
+.thumb-clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  transform: translateZ(0);
+}
+
+.thumb.in-view { padding: 10px; }
+.thumb.is-hovered { padding: 0; }
+
+.thumb-clip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 6px 6px 14px rgba(0,0,0,0.32);
+  transition: box-shadow 0.4s ease;
+}
+
+.thumb.is-hovered .thumb-clip img { box-shadow: none; }
+
+.hoofdstuk-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.75rem;
+}
+
+.hoofdstuk-titel {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  /*color: var(--accent);*/
+}
+
+.hoofdstuk-sub {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-top: 0.2rem;
+}
+
+.hoofdstuk-pijl {
+  font-size: 0.85rem;
+  color: var(--gray);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.hoofdstuk.is-hovered-card .hoofdstuk-pijl {
+  transform: translateX(4px);
+  color: var(--black);
+}
+
+/* ── SECTIES ── */
 .sectie {
   margin-top: 3rem;
   padding-top: 2rem;
@@ -228,7 +357,7 @@ main {
 
 .media-frame {
   background: var(--accent);
-  padding: 0.3rem;
+  padding: 0.5rem;
   display: block;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
@@ -339,7 +468,6 @@ main {
 
 .gallery-btn:hover { background: rgba(0,0,0,0.25); }
 .gallery-btn.hidden { opacity: 0; pointer-events: none; }
-
 .gallery-footer { display: none; }
 
 .gallery-caption {
@@ -386,7 +514,7 @@ main {
 }
 
 .over-foto {
-  width: 170px;
+  width: 200px;
   aspect-ratio: 1;
   background: #E0DDD6;
   overflow: hidden;
@@ -424,6 +552,7 @@ footer a { font-size: 0.8rem; color: var(--gray); text-decoration: none; }
 footer a:hover { color: var(--black); }
 .footer-btw { font-size: 0.7rem; color: var(--gray); }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 480px) {
   nav { padding: 2rem 1.25rem 0; }
   main { padding: 0 1.25rem; }
