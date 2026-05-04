@@ -557,6 +557,13 @@ footer a:hover { color: var(--black); }
   nav { padding: 2rem 1.25rem 0; }
   main { padding: 0 1.25rem; }
   footer { padding: 2rem 1.25rem 3rem; }
-  .over-intro { grid-template-columns: 1fr; }
-  .over-foto { width: 80px; }
+  .over-intro { 
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+  .over-foto { 
+    width: 100% !important; 
+    aspect-ratio: 4/3;
+  }
 }
