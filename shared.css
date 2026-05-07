@@ -357,7 +357,7 @@ main {
 
 .media-frame {
   background: var(--accent);
-  padding: 0.5rem;
+  padding: 0.3rem;
   display: block;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
