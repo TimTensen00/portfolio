@@ -3,3 +3,6 @@ generate2.py
 notes.txtgenerate2.py
 *.csv
 notes.txt
+*.txt
+*.csv
+*.py
